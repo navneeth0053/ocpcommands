@@ -8,3 +8,7 @@ base64 -w0 current-01-imagsearchregistries.conf > new-01-imagsearchregistries.co
 
 oc get machineconfig 99-master-registries-config -o jsonpath='{.spec.config.storage.files[?(@.path=="/etc/containers/registries.conf.d/01-imagsearchregistries.conf")].contents.source}'
 
+_____
+oc get machineconfig 99-master-registries-config -o jsonpath='{.spec.config.storage.files[?(@.path=="/etc/containers/registries.conf.d/01-imagsearchregistries.conf")].contents.source}' > encoded.txt
+
+base64 -d encoded.txt > current-01-imagsearchregistries.conf
